@@ -61,7 +61,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 	
 	private PhysicsWorld physicsWorld;
 	final static FixtureDef PLAYER_FIX = PhysicsFactory.createFixtureDef(0.0f, 0.0f, 0.0f);
-	final static FixtureDef WALL_FIX = PhysicsFactory.createFixtureDef(0.0f, 0.0f, 0.0f);
+	final static FixtureDef WALL_FIX = PhysicsFactory.createFixtureDef(0.0f, 0.5f, 0.0f);
 	
 	
 	private Scene scene;
@@ -115,6 +115,7 @@ public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouc
 		
 		this.player = new AnimatedSprite(playerX, playerY, playerTextureRegion, this.getVertexBufferObjectManager());
 		this.player.animate(100);
+		camera.setChaseEntity(player);
 		this.playerBody = PhysicsFactory.createBoxBody(physicsWorld, player, BodyType.DynamicBody, PLAYER_FIX);
 		this.playerBody.setLinearVelocity(new Vector2(5, playerBody.getLinearVelocity().y));
 		scene.attachChild(player);
